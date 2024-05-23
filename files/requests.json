@@ -1,0 +1,93 @@
+[
+    {
+        "requestDate": "May 23, 2024 at 10:03:53 PM",
+        "requestMethod": "GET",
+        "statusCode": 200,
+        "message": "Get request successful. All data",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:05:59 PM",
+        "requestMethod": "GET",
+        "statusCode": 200,
+        "message": "Get request successful. All data",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:06:49 PM",
+        "requestMethod": "GET",
+        "statusCode": 200,
+        "message": "Get request successful. All data",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:09:46 PM",
+        "requestMethod": "GET",
+        "statusCode": 200,
+        "message": "Get request successful. Item with id 2",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:11:23 PM",
+        "requestMethod": "POST",
+        "statusCode": 201,
+        "message": "Post request successful. Item with id 6",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:14:28 PM",
+        "requestMethod": "POST",
+        "statusCode": 400,
+        "message": "Post request failed. Required values wasn't presented",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:16:18 PM",
+        "requestMethod": "GET",
+        "statusCode": 404,
+        "message": "Get request failed. Data not found",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:16:34 PM",
+        "requestMethod": "GET",
+        "statusCode": 404,
+        "message": "Get request failed. Data not found",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:16:59 PM",
+        "requestMethod": "PATCH",
+        "statusCode": 404,
+        "message": "Get request failed. Data not found",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:35:03 PM",
+        "requestMethod": "PATCH",
+        "statusCode": 200,
+        "message": "Patch request successful. Product with id 1",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:36:12 PM",
+        "requestMethod": "PATCH",
+        "statusCode": 200,
+        "message": "Patch request successful. Product with id 1",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 10:57:13 PM",
+        "requestMethod": "PATCH",
+        "statusCode": 404,
+        "message": "PATCH request failed. Data not found or method not supported",
+        "requestFrom": "::1"
+    },
+    {
+        "requestDate": "May 23, 2024 at 11:03:52 PM",
+        "requestMethod": "DELETE",
+        "statusCode": 200,
+        "message": "Delete request successful. Product with id 1",
+        "requestFrom": "::1"
+    }
+]
