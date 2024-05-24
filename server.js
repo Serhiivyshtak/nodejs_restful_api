@@ -3,9 +3,10 @@ const fileSystem = require('fs');
 const { setNewRequest } = require('./functions.js');
 
 let products = require('./files/products.json');
-const requests = require('./files/requests.json');
 
 const server = http.createServer((request, response) => {
+    
+    let log = {}
 
     response.setHeader('Content-Type', 'application/json');
 
@@ -13,9 +14,8 @@ const server = http.createServer((request, response) => {
 
         response.statusCode = 200;
         response.end(JSON.stringify({responseHead: {statusCode: 200, message: 'Data fetched successfuly'}, responseBody: products}));
-        const newRequest = setNewRequest(request, 'GET', 200, 'Get request successful. All data');
-        requests.push(newRequest);
-        fileSystem.writeFileSync('./files/requests.json', JSON.stringify(requests), 'utf-8');
+
+        log = setNewRequest(request, 'GET', 200, 'Get request successful. All data');
 
     } else if (request.url.match(/\/api\/products\/([0-9]+)/) && +request.url.split('/').at(-1) <= products.length && request.method === 'GET') {
 
@@ -26,9 +26,7 @@ const server = http.createServer((request, response) => {
             }
         }
         response.statusCode = 200;
-        const newRequest = setNewRequest(request, 'GET', 200, `Get request successful. Item with id ${itemId}`);
-        requests.push(newRequest);
-        fileSystem.writeFileSync('./files/requests.json', JSON.stringify(requests), 'utf-8');
+        log = setNewRequest(request, 'GET', 200, `Get request successful. Item with id ${itemId}`);
 
     } else if ((request.url === '/api/products' || request.url === '/api/products/') && request.method === 'POST') {
 
@@ -55,18 +53,14 @@ const server = http.createServer((request, response) => {
                 response.statusCode = 201;
                 response.end(JSON.stringify({statusCode: 201, message: 'Product created', product: newProduct}));
                 
-                const newRequest = setNewRequest(request, 'POST', 201, `Post request successful. Item with id ${newProduct.id}`);
-                requests.push(newRequest);
-                fileSystem.writeFileSync('./files/requests.json', JSON.stringify(requests), 'utf-8');
+                log = setNewRequest(request, 'POST', 201, `Post request successful. Item with id ${newProduct.id}`);
 
             } else {
 
                 response.statusCode = 400;
                 response.end(JSON.stringify({statusCode: 400, message: 'Required values are not presented'}));
 
-                const newRequest = setNewRequest(request, 'POST', 400, 'Post request failed. Required values wasn\'t presented');
-                requests.push(newRequest);
-                fileSystem.writeFileSync('./files/requests.json', JSON.stringify(requests), 'utf-8');
+                log = setNewRequest(request, 'POST', 400, 'Post request failed. Required values wasn\'t presented');
 
             }
 
@@ -96,9 +90,7 @@ const server = http.createServer((request, response) => {
             response.statusCode = 200;
             response.end(JSON.stringify({statusCode: 200, message: `Product with id ${itemId} updated`}));
 
-            const newRequest = setNewRequest(request, 'PATCH', 200, `Patch request successful. Product with id ${itemId}`);
-            requests.push(newRequest);
-            fileSystem.writeFileSync('./files/requests.json', JSON.stringify(requests), 'utf-8');
+            log = setNewRequest(request, 'PATCH', 200, `Patch request successful. Product with id ${itemId}`);
 
         });
 
@@ -111,20 +103,19 @@ const server = http.createServer((request, response) => {
         response.statusCode = 200;
         response.end(JSON.stringify({statusCode: 200, message: `Product with id ${itemId} deleted`}));
 
-        const newRequest = setNewRequest(request, 'DELETE', 200, `Delete request successful. Product with id ${itemId}`);
-        requests.push(newRequest);
-        fileSystem.writeFileSync('./files/requests.json', JSON.stringify(requests), 'utf-8');
+        log = setNewRequest(request, 'DELETE', 200, `Delete request successful. Product with id ${itemId}`);
+
 
     } else {
 
         response.statusCode = 404;
         response.end(JSON.stringify({statusCode: 404, message: 'Data not found'}));
 
-        const newRequest = setNewRequest(request, request.method, 404, `${request.method} request failed. Data not found or method not supported`);
-        requests.push(newRequest);
-        fileSystem.writeFileSync('./files/requests.json', JSON.stringify(requests), 'utf-8');
+        log = setNewRequest(request, request.method, 404, `${request.method} request failed. Data not found or method not supported`);
 
     }
+
+    console.log(log);
 });
 
 const port = process.env.PORT || 5000;
